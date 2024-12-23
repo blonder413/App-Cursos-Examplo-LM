@@ -22,3 +22,14 @@ async function bootstrap() {
 }
 bootstrap();
 ```
+
+# Módulos
+```bash
+nest generate module Test
+nest g mo Test
+```
+# Recursos
+```bash
+nest generate resource courses
+nest g res courses
+```
