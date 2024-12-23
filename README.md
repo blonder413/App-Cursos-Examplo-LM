@@ -163,3 +163,20 @@ import { ConfigModule } from '@nestjs/config';
 })
 export class AppModule {}
 ```
+
+# [CORS](https://docs.nestjs.com/security/cors)
+
+Podemos llamar al método `enableCors()` para permitirlos en el archivo `/src/app.module.ts`
+
+```js
+const app = await NestFactory.create(AppModule);
+app.enableCors();
+await app.listen(process.env.PORT ?? 3000);
+```
+
+También podemos llamarlo directamente en la creación del objeto
+
+```js
+const app = await NestFactory.create(AppModule, { cors: true });
+await app.listen(process.env.PORT ?? 3000);
+```
