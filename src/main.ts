@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 /** import { ValidationPipe } from '@nestjs/common'; */
 /**import {
   FastifyAdapter,
@@ -13,6 +14,14 @@ async function bootstrap() {
   //   new FastifyAdapter(),
   // );
   // app.useGlobalPipes(new ValidationPipe())
+
+  const config = new DocumentBuilder()
+    .setTitle('API de NestJS Curso')
+    .setDescription('Esta es la API del curso de Nestjs de codigoencasa.com')
+    .build();
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('documentation', app, documentFactory);
+
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
