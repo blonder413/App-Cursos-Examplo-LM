@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { json } from 'express';
 /** import { ValidationPipe } from '@nestjs/common'; */
 /**import {
   FastifyAdapter,
@@ -14,6 +15,9 @@ async function bootstrap() {
   //   new FastifyAdapter(),
   // );
   // app.useGlobalPipes(new ValidationPipe())
+
+  // definir el límite en MB de una petición post
+  app.use(json({ limit: '60mb' }));
 
   const config = new DocumentBuilder()
     .addBearerAuth()

@@ -180,3 +180,14 @@ También podemos llamarlo directamente en la creación del objeto
 const app = await NestFactory.create(AppModule, { cors: true });
 await app.listen(process.env.PORT ?? 3000);
 ```
+
+# Limitar tamaño de una petición post
+Cuando enviamos un formulario vía post existe un límite en mb, esto puede ocasionar problemas por ejemplo al cargar archivos.
+Podemos solucionar esto agregando una configuración simple en `/src/main.ts`
+
+```js
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule, { cors: true });
+  app.use(json({ limit: '60mb' }));
+}
+```
