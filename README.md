@@ -215,3 +215,10 @@ Permite mostrar contenido estático. Nos puede evitar que servicios como AWS den
 ```bash
 npm install --save @nestjs/serve-static
 ```
+
+# [Pipes](https://docs.nestjs.com/pipes)
+
+Son usados para 2 motivos:
+
+1. transformar (por ejemplo de string a int)
+2. validar si los datos son válidos y mostrar excepciones en caso de que no
