@@ -182,6 +182,7 @@ await app.listen(process.env.PORT ?? 3000);
 ```
 
 # Limitar tamaño de una petición post
+
 Cuando enviamos un formulario vía post existe un límite en mb, esto puede ocasionar problemas por ejemplo al cargar archivos.
 Podemos solucionar esto agregando una configuración simple en `/src/main.ts`
 
@@ -189,5 +190,20 @@ Podemos solucionar esto agregando una configuración simple en `/src/main.ts`
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.use(json({ limit: '60mb' }));
+}
+```
+
+# Definir versión
+
+En el archivo `/src/main.ts` podemos definiar la versión de nuestra api
+
+```js
+import { VersioningType } from '@nestjs/common';
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule, { cors: true });
+  app.enableVersioning({
+    defaultVersion: '1',
+    type: VersioningType.URI,
+  });
 }
 ```

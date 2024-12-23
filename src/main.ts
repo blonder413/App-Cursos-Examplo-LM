@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { json } from 'express';
+import { VersioningType } from '@nestjs/common';
 /** import { ValidationPipe } from '@nestjs/common'; */
 /**import {
   FastifyAdapter,
@@ -18,6 +19,12 @@ async function bootstrap() {
 
   // definir el límite en MB de una petición post
   app.use(json({ limit: '60mb' }));
+
+  // definir versión de la api
+  app.enableVersioning({
+    defaultVersion: '1',
+    type: VersioningType.URI,
+  });
 
   const config = new DocumentBuilder()
     .addBearerAuth()
