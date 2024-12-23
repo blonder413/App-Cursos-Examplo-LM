@@ -207,3 +207,11 @@ async function bootstrap() {
   });
 }
 ```
+
+# [Serve Static](https://docs.nestjs.com/recipes/serve-static)
+
+Permite mostrar contenido estático. Nos puede evitar que servicios como AWS den error al no encontrar la ruta /
+
+```bash
+npm install --save @nestjs/serve-static
+```
