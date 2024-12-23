@@ -7,21 +7,23 @@ import {
   Param,
   Delete,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { VideosService } from './videos.service';
 import { CreateVideoDto } from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
 
 @Controller('videos')
+@UsePipes(new ValidationPipe())
 export class VideosController {
   constructor(private readonly videosService: VideosService) {}
 
   @Post()
-  create(@Body() body: any) {
-    console.log(body);
-    return true;
+  create(@Body() createVideoDto: CreateVideoDto) {
+    console.log(createVideoDto);
     
-    // return this.videosService.create(createVideoDto);
+    return this.videosService.create(createVideoDto);
   }
 
   @Get()
