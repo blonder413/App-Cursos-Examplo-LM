@@ -16,6 +16,7 @@ async function bootstrap() {
   // app.useGlobalPipes(new ValidationPipe())
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('API de NestJS Curso')
     .setDescription('Esta es la API del curso de Nestjs de codigoencasa.com')
     .build();
