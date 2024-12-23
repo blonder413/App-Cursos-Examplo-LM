@@ -93,10 +93,12 @@ export class CreateVideoDto {
 ```
 
 # [Swagger](https://docs.nestjs.com/openapi/introduction)
+
 ```bash
 npm install --save @nestjs/swagger swagger-ui-express
 npm install --save @nestjs/swagger fastify-swagger
 ```
+
 Modificar el `main.ts`
 
 ```ts
@@ -119,4 +121,45 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
+```
+
+# [Configuration](https://docs.nestjs.com/techniques/configuration)
+
+Permite acceder a las variables de entorno
+
+```bash
+npm i --save @nestjs/config
+```
+
+Agregar la importación de `ConfigModule` en `/src/app.modules.ts`
+
+```js
+import { ConfigModule } from '@nestjs/config';
+
+@Module({
+  imports: [ConfigModule.forRoot()],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+Una vez creado el archivo `.env` en la raiz del proyecto podemos acceder a aquellas que tengamos definidas
+
+```js
+console.log('__ENV__', process.env.PORT);
+```
+
+Es posible que algunos módulos no estén importados en `app.module.ts` por lo que podría no tener acceso a las variables de entorno.
+Para corregir esto podemos configurar la lectura de forma global.
+
+```js
+import { ConfigModule } from '@nestjs/config';
+
+@Module({
+  imports: [ConfigModule.forRoot({ isGlobal: true })],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
 ```

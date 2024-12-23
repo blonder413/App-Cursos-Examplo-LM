@@ -19,6 +19,8 @@ export class CoursesController {
 
   @Post()
   create(@Body() createCourseDto: CreateCourseDto) {
+    console.log('__DB__', process.env.DB_NAME);
+
     return this.coursesService.create(createCourseDto);
   }
 
