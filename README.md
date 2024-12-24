@@ -247,3 +247,9 @@ nest g itc utils/Logger
 ```bash
 npm i -D @types/multer
 ```
+
+# [MongoDB (Mongoose)](https://docs.nestjs.com/recipes/mongodb#getting-started)
+
+```bash
+npm install --save mongoose
+```
