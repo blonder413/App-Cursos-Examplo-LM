@@ -230,6 +230,15 @@ nest g pi courses/Slug
 ```
 
 # [url-slug](https://www.npmjs.com/package/url-slug)
+
 ```bash
 npm install url-slug
 ```
+
+# Interceptor
+
+````bash
+nest g interceptor utils/Logger
+nest g itc utils/Logger
+```bash
+````

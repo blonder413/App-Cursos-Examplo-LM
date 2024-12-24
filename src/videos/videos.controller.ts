@@ -9,13 +9,16 @@ import {
   Query,
   UsePipes,
   ValidationPipe,
+  UseInterceptors,
 } from '@nestjs/common';
 import { VideosService } from './videos.service';
 import { CreateVideoDto } from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
 import { SlugPipe } from 'src/courses/pipes/slug/slug.pipe';
+import { LoggerInterceptor } from 'src/utils/logger/logger.interceptor';
 
 @Controller('videos')
+@UseInterceptors(LoggerInterceptor)
 @UsePipes(new ValidationPipe())
 export class VideosController {
   constructor(private readonly videosService: VideosService) {}
