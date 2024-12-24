@@ -237,8 +237,13 @@ npm install url-slug
 
 # Interceptor
 
-````bash
+```bash
 nest g interceptor utils/Logger
 nest g itc utils/Logger
+```
+
+# [File upload](https://docs.nestjs.com/techniques/file-upload)
+
 ```bash
-````
+npm i -D @types/multer
+```
