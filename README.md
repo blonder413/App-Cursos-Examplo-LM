@@ -222,3 +222,14 @@ Son usados para 2 motivos:
 
 1. transformar (por ejemplo de string a int)
 2. validar si los datos son válidos y mostrar excepciones en caso de que no
+
+## Pipe personalizado
+
+```bash
+nest g pi courses/Slug
+```
+
+# [url-slug](https://www.npmjs.com/package/url-slug)
+```bash
+npm install url-slug
+```

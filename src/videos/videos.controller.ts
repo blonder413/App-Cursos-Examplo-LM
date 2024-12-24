@@ -13,6 +13,7 @@ import {
 import { VideosService } from './videos.service';
 import { CreateVideoDto } from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
+import { SlugPipe } from 'src/courses/pipes/slug/slug.pipe';
 
 @Controller('videos')
 @UsePipes(new ValidationPipe())
@@ -22,7 +23,7 @@ export class VideosController {
   @Post()
   create(@Body() createVideoDto: CreateVideoDto) {
     console.log(createVideoDto);
-    
+
     return this.videosService.create(createVideoDto);
   }
 
@@ -33,11 +34,11 @@ export class VideosController {
     return this.videosService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    console.log('id:', id);
+  @Get(':title')
+  findOne(@Param('title', new SlugPipe()) title: string) {
+    console.log('__title__:', title);
 
-    return this.videosService.findOne(+id);
+    return this.videosService.findOne(1);
   }
 
   @Patch(':id')
