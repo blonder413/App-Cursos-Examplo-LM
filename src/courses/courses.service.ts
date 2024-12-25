@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Course } from './interfaces/course.interface';
 
 @Injectable()
@@ -18,15 +18,19 @@ export class CoursesService {
     return `This action returns all courses`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} course`;
+  findOne(id: string) {
+    return this.courseModel.findOne({ id });
   }
 
-  update(id: number, updateCourseDto: UpdateCourseDto) {
-    return `This action updates a #${id} course`;
+  update(id: string, updateCourseDto: UpdateCourseDto) {
+    return this.courseModel.findOneAndUpdate({ _id:id }, updateCourseDto, {
+      upsert: true,
+      new: true,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} course`;
+  remove(id: string) {
+    const _id = new Types.ObjectId(id);
+    return this.courseModel.deleteOne({ _id });
   }
 }
